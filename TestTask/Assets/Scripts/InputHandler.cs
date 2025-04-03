@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using System;
 
 public abstract class InputHandler : MonoBehaviour
 {
-    public event UnityAction<float> OnMove;
+    public event Action<float> OnMoveEvent; // Событие для наблюдения
 
-    protected void InvokeMove(float direction)
+    protected void Notify(float direction)
     {
-        OnMove?.Invoke(direction);
+        OnMoveEvent?.Invoke(direction); // Уведомляем подписчиков
     }
 
     public abstract void Enable();
